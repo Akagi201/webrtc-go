@@ -1,0 +1,24 @@
+---
+GENERATOR:
+  PackageName: webrtc
+  PackageDescription: "Package webrtc provides Go bindings for WebRTC"
+  PackageLicense: "MIT"
+  Includes: ["webrtc/webrtc.h"]
+
+PARSER:
+  IncludePaths: ["/usr/include", "/usr/local/include"]
+  SourcesPaths: ["webrtc/webrtc/include/webrtc.h"]
+
+TRANSLATOR:
+  ConstRules:
+    defines: eval
+  PtrTips:
+    function:
+  Rules:
+    global:
+      - {transform: export}
+    function:
+    private:
+      - {transform: unexport}
+    post-global:
+      - {load: snakecase}
